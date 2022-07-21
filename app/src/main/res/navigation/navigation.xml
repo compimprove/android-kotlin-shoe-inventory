@@ -11,12 +11,30 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_shoeListingFragment"
-            app:destination="@id/shoeListingFragment" />
+            android:id="@+id/action_loginFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoeListingFragment"
         android:name="com.example.shoestore.screen.shoelisting.ShoeListingFragment"
         android:label="fragment_shoe_listing"
         tools:layout="@layout/fragment_shoe_listing" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.shoestore.screen.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_instructionFragment"
+            app:destination="@id/instructionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructionFragment"
+        android:name="com.example.shoestore.screen.InstructionFragment"
+        android:label="fragment_instruction"
+        tools:layout="@layout/fragment_instruction" >
+        <action
+            android:id="@+id/action_instructionFragment_to_shoeListingFragment"
+            app:destination="@id/shoeListingFragment" />
+    </fragment>
 </navigation>

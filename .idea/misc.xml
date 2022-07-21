@@ -4,7 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Source/shoestore/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Source/shoestore/app/src/main/res/layout/fragment_login.xml" value="0.536" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/component.xml" value="0.24375" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/fragment_instruction.xml" value="0.2265625" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/fragment_shoe_listing.xml" value="0.24375" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/fragment_welcome.xml" value="0.264" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/sample_shoe_view.xml" value="0.2265625" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/shoe_view.xml" value="0.536" />
+        <entry key="..\:/Source/shoestore/app/src/main/res/layout/shoeview.xml" value="0.2" />
       </map>
     </option>
   </component>
