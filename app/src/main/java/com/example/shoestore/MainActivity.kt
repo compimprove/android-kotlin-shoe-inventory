@@ -10,8 +10,7 @@ import com.example.shoestore.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding =
-            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val navController = findNavController(R.id.navHostController);
         NavigationUI.setupActionBarWithNavController(this, navController);
     }

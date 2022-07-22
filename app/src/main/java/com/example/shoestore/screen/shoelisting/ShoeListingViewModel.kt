@@ -22,6 +22,18 @@ class ShoeListingViewModel : ViewModel() {
             Shoe("Shoe9", 9.0, "Company9", "Description9"),
         );
     }
+
     val shoes: LiveData<List<Shoe>>
         get() = _shoes
+
+    fun addShoe(args: ShoeListingFragmentArgs) {
+        _shoes.value = _shoes.value?.plus(
+            Shoe(
+                args.shoeName,
+                args.shoeSize.toDouble(),
+                args.shoeCompany,
+                args.shoeDescription
+            )
+        )
+    }
 }

@@ -18,7 +18,28 @@
         android:id="@+id/shoeListingFragment"
         android:name="com.example.shoestore.screen.shoelisting.ShoeListingFragment"
         android:label="fragment_shoe_listing"
-        tools:layout="@layout/fragment_shoe_listing" />
+        tools:layout="@layout/fragment_shoe_listing" >
+        <action
+            android:id="@+id/action_shoeListingFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_shoeListingFragment_to_shoeDetailFragment"
+            app:destination="@id/shoeDetailFragment" />
+        <argument
+            android:name="shoeName"
+            app:argType="string" />
+        <argument
+            android:name="shoeSize"
+            app:argType="float" />
+        <argument
+            android:name="shoeCompany"
+            app:argType="string" />
+        <argument
+            android:name="shoeDescription"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.shoestore.screen.WelcomeFragment"
@@ -36,5 +57,15 @@
         <action
             android:id="@+id/action_instructionFragment_to_shoeListingFragment"
             app:destination="@id/shoeListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeDetailFragment"
+        android:name="com.example.shoestore.screen.shoedetail.ShoeDetailFragment"
+        android:label="ShoeDetailFragment" >
+        <action
+            android:id="@+id/action_shoeDetailFragment_to_shoeListingFragment"
+            app:destination="@id/shoeListingFragment"
+            app:popUpTo="@id/shoeListingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

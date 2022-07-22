@@ -1,24 +1,21 @@
 package com.example.shoestore.screen.shoelisting
 
 import android.os.Bundle
+import android.view.*
+import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeListingBinding
 import com.example.shoestore.databinding.ShoeViewBinding
 import com.example.shoestore.models.Shoe
-import com.example.shoestore.screen.login.LoginViewModel
 
 class ShoeListingFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ShoeListingFragment()
-    }
     private lateinit var viewModel: ShoeListingViewModel
 
     override fun onCreateView(
@@ -30,6 +27,11 @@ class ShoeListingFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_listing, container, false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[ShoeListingViewModel::class.java]
+        try {
+            val args = ShoeListingFragmentArgs.fromBundle(requireArguments())
+            viewModel.addShoe(args)
+        } catch (e: IllegalArgumentException) {
+        }
         viewModel.shoes.observe(viewLifecycleOwner) {
             run {
                 binding.listShoe.removeAllViews()
@@ -38,7 +40,29 @@ class ShoeListingFragment : Fragment() {
                 }
             }
         }
+        binding.addShoeButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_shoeListingFragment_to_shoeDetailFragment))
+        addMenuProvider()
         return binding.root
+    }
+
+    private fun addMenuProvider() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.shoe_listing_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.logout -> {
+                        view?.findNavController()!!
+                            .navigate(R.id.action_shoeListingFragment_to_loginFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun createShoeView(

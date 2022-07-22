@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/list_shoe"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </HorizontalScrollView>
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/list_shoe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_shoe_button"
+            android:layout_marginBottom="16dp"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </LinearLayout>
+
 </layout>
