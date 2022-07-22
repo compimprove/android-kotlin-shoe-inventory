@@ -1,5 +1,6 @@
 package com.example.shoestore.screen.shoedetail
 
+import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,19 +19,19 @@ class ShoeDetailViewModel : ViewModel() {
     val shoeDescription: LiveData<String>
         get() = _description
 
-    fun updateName(s: String) {
-        _shoeName.value = s
+    fun updateName(e: Editable) {
+        _shoeName.value = e.toString()
     }
 
-    fun updateCompany(s: String) {
-        _company.value = s
+    fun updateCompany(e: Editable) {
+        _company.value = e.toString()
     }
 
-    fun updateDescription(s: String) {
-        _description.value = s
+    fun updateDescription(e: Editable) {
+        _description.value = e.toString()
     }
 
-    fun updateSize(s: String) {
-        _size.value = s.toFloatOrNull() ?: 0.0f
+    fun updateSize(e: Editable) {
+        _size.value = e.toString().toFloatOrNull()
     }
 }
