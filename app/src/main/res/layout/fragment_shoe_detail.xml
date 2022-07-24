@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Using ConstraintLayout for this fragment because it contains many elements -->
 
     <data>
 
         <variable
-            name="shoeDetail"
-            type="com.example.shoestore.screen.shoedetail.ShoeDetailViewModel" />
+            name="shoeViewModel"
+            type="com.example.shoestore.screen.shoelisting.ShoeShareViewModel" />
+
+        <variable
+            name="shoe"
+            type="com.example.shoestore.models.Shoe" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,9 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:afterTextChanged="@{(e) -> shoeDetail.updateName(e)}"
             android:ems="10"
             android:inputType="text"
+            android:text="@={shoe.name}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/name_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,9 +61,9 @@
             android:id="@+id/size_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:afterTextChanged="@{(e) -> shoeDetail.updateSize(e)}"
             android:ems="10"
             android:inputType="numberDecimal"
+            android:text="@={shoe.sizeShoe}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/size_text"
             app:layout_constraintStart_toStartOf="@+id/name_edit_text" />
@@ -67,10 +72,9 @@
             android:id="@+id/company_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:afterTextChanged="@{(e) -> shoeDetail.updateCompany(e)}"
             android:ems="10"
             android:inputType="text"
-
+            android:text="@={shoe.company}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/company_text"
             app:layout_constraintStart_toStartOf="@+id/name_edit_text" />
@@ -91,9 +95,9 @@
             android:id="@+id/description_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:afterTextChanged="@{(e) -> shoeDetail.updateDescription(e)}"
             android:ems="10"
             android:inputType="text"
+            android:text="@={shoe.description}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/description_text"
             app:layout_constraintStart_toStartOf="@+id/name_edit_text" />

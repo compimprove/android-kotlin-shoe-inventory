@@ -16,7 +16,7 @@ import com.example.shoestore.databinding.ShoeViewBinding
 import com.example.shoestore.models.Shoe
 
 class ShoeListingFragment : Fragment() {
-    private lateinit var viewModel: ShoeListingViewModel
+    private lateinit var viewModel: ShoeShareViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,12 +26,7 @@ class ShoeListingFragment : Fragment() {
         val binding: FragmentShoeListingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_listing, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this)[ShoeListingViewModel::class.java]
-        try {
-            val args = ShoeListingFragmentArgs.fromBundle(requireArguments())
-            viewModel.addShoe(args)
-        } catch (e: IllegalArgumentException) {
-        }
+        viewModel = ViewModelProvider(requireActivity())[ShoeShareViewModel::class.java]
         viewModel.shoes.observe(viewLifecycleOwner) {
             run {
                 binding.listShoe.removeAllViews()

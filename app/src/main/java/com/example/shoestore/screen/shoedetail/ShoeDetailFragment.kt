@@ -11,10 +11,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeDetailBinding
+import com.example.shoestore.models.Shoe
+import com.example.shoestore.screen.shoelisting.ShoeShareViewModel
 
 class ShoeDetailFragment : Fragment() {
     private lateinit var binding: FragmentShoeDetailBinding
-    private lateinit var viewModel: ShoeDetailViewModel
+    private lateinit var shoeViewModel: ShoeShareViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,25 +24,22 @@ class ShoeDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
-        viewModel = ViewModelProvider(this)[ShoeDetailViewModel::class.java]
-        binding.shoeDetail = viewModel
+        binding.lifecycleOwner = this
+        shoeViewModel = ViewModelProvider(requireActivity())[ShoeShareViewModel::class.java]
+        binding.shoeViewModel = shoeViewModel
+        binding.shoe = Shoe()
         binding.cancelButton.setOnClickListener { canCel() }
         binding.saveShoeButton.setOnClickListener { addShoe() }
         return binding.root
     }
 
-    fun addShoe() {
-        view!!.findNavController().navigate(
-            ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment(
-                viewModel.shoeName.value ?: "",
-                viewModel.shoeSize.value ?: 0.0f,
-                viewModel.shoeCompany.value ?: "",
-                viewModel.shoeDescription.value ?: "",
-            )
-        )
+    private fun addShoe() {
+        shoeViewModel.addShoe(binding.shoe!!)
+        view!!.findNavController().navigate(R.id.action_shoeDetailFragment_to_shoeListingFragment)
     }
 
-    fun canCel() {
+
+    private fun canCel() {
         view!!.findNavController().navigate(R.id.action_shoeDetailFragment_to_shoeListingFragment)
     }
 }
